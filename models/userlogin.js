@@ -17,6 +17,21 @@ let user = new Schema(
           username: {
                type: String,
           },
+
+          admin: {
+               type: String,
+               enum: [
+                    "milladmin",
+                    "unitadmin",
+                    "departmentadmin",
+                    "sitraadmin",
+                    "defaultadmin",
+               ],
+               default: "defaultadmin",
+          },
+          mill: { type: mongoose.Schema.ObjectId, ref: "Mill", default: null },
+          unit: [],
+          department: [],
      },
      { strict: false }
 );

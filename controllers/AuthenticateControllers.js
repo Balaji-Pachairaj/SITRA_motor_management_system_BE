@@ -12,6 +12,10 @@ const signupController = async (req, res, next) => {
                email: email,
                password: password,
                username: username,
+               admin: "sitraadmin",
+               mill: null,
+               unit: null,
+               department: null,
           });
 
           await userObj.save({ strict: false });
@@ -41,7 +45,9 @@ const signupController = async (req, res, next) => {
 const signinController = async (req, res, next) => {
      let body = req.body;
      try {
-          const user = await User.findOne({ email: body.email });
+          const user = await User.findOne({ email: body.email }).populate(
+               "mill"
+          );
 
           if (user) {
                if (user.password === body?.password) {

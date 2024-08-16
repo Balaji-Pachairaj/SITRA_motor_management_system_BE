@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const authenticateRouters = require("./routers/authenticateRouters");
+const millRouters = require("./routers/millRouters");
 
 app.use(
      cors({
@@ -17,6 +18,7 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(authenticateRouters);
+app.use(millRouters);
 
 // Starting the sever
 mongoose
