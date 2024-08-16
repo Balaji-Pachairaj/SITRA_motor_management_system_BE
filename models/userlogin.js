@@ -14,6 +14,9 @@ let user = new Schema(
                required: true,
                minlength: 6,
           },
+          username: {
+               type: String,
+          },
      },
      { strict: false }
 );

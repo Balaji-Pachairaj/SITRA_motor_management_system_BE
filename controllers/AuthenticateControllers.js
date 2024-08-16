@@ -6,10 +6,12 @@ const signupController = async (req, res, next) => {
      try {
           let email = body?.email;
           let password = body?.password;
+          let username = body?.username;
 
           let userObj = new User({
                email: email,
                password: password,
+               username: username,
           });
 
           await userObj.save({ strict: false });
@@ -71,7 +73,7 @@ const signinController = async (req, res, next) => {
 const getUserListController = async (req, res, next) => {
      try {
           //   let list = await User.find().select("email password");
-          let list = await User.find();
+          let list = await User.find().select("username email");
           if (list) {
                res.json({
                     list,
