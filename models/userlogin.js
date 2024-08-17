@@ -30,10 +30,15 @@ let user = new Schema(
                default: "defaultadmin",
           },
           mill: { type: mongoose.Schema.ObjectId, ref: "Mill", default: null },
-          unit: [],
-          department: [],
+          units: [{ type: Schema?.Types?.ObjectId, ref: "Unit" }],
+          departments: [],
      },
      { strict: false }
 );
+
+user.methods.addUnit = function (unitid) {
+     this.units.push(unitid);
+     return this.save();
+};
 
 module.exports = mongoose.model("User", user);

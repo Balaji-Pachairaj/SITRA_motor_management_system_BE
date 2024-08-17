@@ -13,6 +13,7 @@ const creeateMillAccountandmillAdmin = async (req, res, next) => {
                location: mill.location,
                status: "inboarding",
                admins: [],
+               units: [],
           });
 
           await millObj.save();
@@ -23,8 +24,8 @@ const creeateMillAccountandmillAdmin = async (req, res, next) => {
                username: user?.username,
                admin: "milladmin",
                //    mill: null,
-               unit: [],
-               department: [],
+               units: [],
+               departments: [],
           });
 
           await userObj?.save();
@@ -78,10 +79,17 @@ const getIndivMillsAccount = async (req, res, next) => {
                return res.status(400).json({ error: "Invalid Mill ID format" });
           }
 
-          let millAccount = await Mill.findById(millid).populate({
-               path: "admins",
-               select: "username email _id admin",
-          });
+          let millAccount = await Mill.findById(millid)
+               .populate({
+                    path: "admins",
+                    select: "username email _id admin",
+               })
+               .populate({
+                    path: "units",
+                    // populate: {
+                    //      path: "millid",
+                    // },
+               });
 
           if (millAccount) {
                res.json(millAccount);
@@ -123,8 +131,8 @@ const addAdminInMillAccount = async (req, res, next) => {
                username: user?.username,
                admin: "milladmin",
                mill: millAccount._id,
-               unit: [],
-               department: [],
+               units: [],
+               departments: [],
           });
 
           await userObj.save();

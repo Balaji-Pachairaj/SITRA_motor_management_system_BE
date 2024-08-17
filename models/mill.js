@@ -27,6 +27,8 @@ const Mill = new Schema(
                     required: false,
                },
           ],
+
+          units: [{ type: Schema.Types.ObjectId, ref: "Unit" }],
      },
      { strict: false }
 );
@@ -36,4 +38,9 @@ Mill.methods.addAdmin = function (adminId) {
      return this.save();
 };
 
+Mill.methods.addUnit = function (unitId) {
+     this.units = this.units ? this.units : [];
+     this.units.push(unitId);
+     return this.save();
+};
 module.exports = mongoose.model("Mill", Mill);
