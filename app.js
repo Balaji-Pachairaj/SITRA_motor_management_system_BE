@@ -8,6 +8,7 @@ const app = express();
 const authenticateRouters = require("./routers/authenticateRouters");
 const millRouters = require("./routers/millRouters");
 const unitRouters = require("./routers/unitRouters");
+const departmentRouters = require("./routers/departmentRouters");
 
 app.use(
      cors({
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(authenticateRouters);
 app.use(millRouters);
 app.use(unitRouters);
+app.use(departmentRouters);
 
 // Starting the sever
 mongoose

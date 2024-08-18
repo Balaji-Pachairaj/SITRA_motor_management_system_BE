@@ -114,6 +114,10 @@ const indivUnit = async (req, res, next) => {
                .populate({
                     path: "admins",
                     model: "User",
+               })
+               .populate({
+                    path: "departments",
+                    model: "Department",
                });
 
           if (!unitObj) {

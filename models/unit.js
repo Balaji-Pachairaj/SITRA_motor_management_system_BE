@@ -33,4 +33,9 @@ unit.methods.addAdmins = function (userId) {
      return this.save();
 };
 
+unit.methods.addDepartment = function (departmentId) {
+     this.departments.push(departmentId);
+     return this.save();
+};
+
 module.exports = mongoose.model("Unit", unit);
